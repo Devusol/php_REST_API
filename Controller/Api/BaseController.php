@@ -26,7 +26,14 @@ class BaseController
 */
     protected function getQueryStringParams()
     {
-        return parse_str($_SERVER['QUERY_STRING'], $query);
+        $params = "";
+        if (isset($_SERVER['QUERY_STRING'])) {
+            $params = $_SERVER;
+        } else {
+            $params = "";
+        }
+
+        return parse_str($params, $query);
     }
     /** 
 * Send API output. 
